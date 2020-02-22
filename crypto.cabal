@@ -1,0 +1,37 @@
+cabal-version:      3.0 
+name:                crypto
+version:             0.1.0.0
+-- synopsis:
+-- description:
+-- bug-reports:
+license:             MIT
+license-file:        LICENSE
+author:              attacker0211
+maintainer:          attacker0211@gmail.com
+-- copyright:
+-- category:
+build-type:          Simple
+extra-source-files:  CHANGELOG.md
+
+common crypto-shared
+  build-depends: base >= 4.12 && <4.13,
+                 prettyprinter >= 1.5.1
+  default-language: Haskell2010
+  default-extensions: BangPatterns,
+                      OverloadedStrings,
+                      FlexibleInstances
+  ghc-options: -Wall -Wmissing-exported-signatures -fno-warn-name-shadowing
+
+library crypto-core
+  import: crypto-shared
+  exposed-modules: Algorithm.SuccessiveSquaring,
+                   Algorithm.Numeric,
+                   CodeGen.SuccessiveSquaring
+  hs-source-dirs: src 
+  
+executable test
+  import: crypto-shared
+  main-is: Main.hs
+  build-depends: crypto-core
+  hs-source-dirs: test/src
+  ghc-options: -threaded
