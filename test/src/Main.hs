@@ -1,7 +1,6 @@
 module Main where
 
 import           CodeGen.SuccessiveSquaring
-import           Algorithm.SuccessiveSquaring
 
 main :: IO ()
 main = do

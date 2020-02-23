@@ -7,8 +7,8 @@ module Algorithm.SuccessiveSquaring
   )
 where
 import           Algorithm.Numeric
-import           Data.List                      ( (++) )
 import           Data.Bits                      ( shiftL )
+import           Data.List                      ( (++) )
 
 toLogTwo :: Int -> [Int]
 toLogTwo 0 = []

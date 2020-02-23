@@ -26,7 +26,8 @@ library crypto-core
   import: crypto-shared
   exposed-modules: Algorithm.SuccessiveSquaring,
                    Algorithm.Numeric,
-                   CodeGen.SuccessiveSquaring
+                   CodeGen.SuccessiveSquaring,
+                   CodeGen.Utils
   hs-source-dirs: src 
   
 executable test
