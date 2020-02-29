@@ -4,6 +4,7 @@ module CodeGen.Utils
   , center
   , dollar
   , eqv
+  , genRow
   , mo
   , newl
   , tabl
@@ -21,10 +22,10 @@ import           Data.Text.Prettyprint.Doc.Internal
 import qualified Data.Text.Prettyprint.Doc     as Pretty
 
 begin :: Doc a -> Doc a
-begin x = "\\begin" <> braces x
+begin x = "\\begin" <> Pretty.braces x
 
 end :: Doc a -> Doc a
-end x = "\\end" <> braces x
+end x = "\\end" <> Pretty.braces x
 
 balign :: Doc a
 balign = begin "align*" <> Pretty.hardline
@@ -51,10 +52,10 @@ center :: Doc a -> Doc a
 center x = enclose bcenter ecenter x
 
 btabl :: Doc a -> Doc a
-btabl x = begin "tabular" <> braces x <> Pretty.hardline
+btabl x = begin "tabular" <> Pretty.braces x <> Pretty.hardline
 
-etabl :: Doc a -> Doc a
-etabl x = end "tabular"
+etabl :: Doc a
+etabl = end "tabular"
 
 -- \begin{tabular}{col}
 -- x
@@ -96,5 +97,5 @@ newl = "\\\\"
 
 genRow :: [Int] -> Doc a
 genRow []       = ""
-genRow [a     ] = dollar a
-genRow [x : xs] = dollar a <+> "&" <+> genRow xs
+genRow [x     ] = dollar (pretty x)
+genRow (x : xs) = dollar (pretty x) <+> "&" <+> genRow xs

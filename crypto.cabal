@@ -26,6 +26,7 @@ library crypto-core
   import: crypto-shared
   exposed-modules: Algorithm.SuccessiveSquaring,
                    Algorithm.Numeric,
+                   CodeGen.ExtendedGCD,
                    CodeGen.SuccessiveSquaring,
                    CodeGen.Utils
   hs-source-dirs: src 

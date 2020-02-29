@@ -1,6 +1,6 @@
 module Algorithm.ExtendedGCD
   ( egcd
-  , egcd'
+  , egcdL
   , divList
   , tableF
   , tableS
@@ -16,8 +16,8 @@ egcdL :: [Int] -> [Int] -> (Int, Int)
 egcdL fi se = (last fi, last se)
 
 divList :: Int -> Int -> [Int]
-divList a 0 = []
-divList a b = a `div` b ++ divList b (a `rem` b)
+divList _ 0 = []
+divList a b = [a `div` b] ++ divList b (a `rem` b)
 
 tableF :: [Int] -> [Int]
 tableF li = table' 0 1 li

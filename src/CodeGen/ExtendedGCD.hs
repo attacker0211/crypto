@@ -1,5 +1,7 @@
 module CodeGen.ExtendedGCD
-  ()
+  ( genEucl
+  , genEGCDT
+  )
 where
 import           Algorithm.ExtendedGCD
 import           CodeGen.Utils
@@ -12,14 +14,14 @@ import qualified Data.Text.Prettyprint.Doc     as Pretty
 -- gen steps for doing Euclid algorithm
 genEucl :: Int -> Int -> Doc a
 genEucl a b = align (genEucl' a b) where
-  genEucl' a 0 = ""
+  genEucl' _ 0 = ""
   genEucl' a b =
     pretty a
       <+> "="
       <+> pretty b
       <+> cdot
       <+> pretty (a `div` b)
-      <+> pretty "+"
+      <+> "+"
       <+> pretty (a `rem` b)
       <+> (if (a `rem` b) == 0 then "" else newl)
       <+> genEucl' b (a `rem` b)
@@ -28,5 +30,5 @@ genEucl a b = align (genEucl' a b) where
 genEGCDT :: Int -> Int -> Doc a
 genEGCDT a b =
   let dl = divList a b
-  in  ctabl ("cc|" ++ replicate "c" (length dl - 2))
+  in  ctabl (pretty ("cc|" ++ replicate (length dl - 2) 'c'))
             (genRow (tableF dl) <+> newl <+> genRow (tableS dl))
