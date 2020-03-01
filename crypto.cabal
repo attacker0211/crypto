@@ -24,7 +24,8 @@ common crypto-shared
 
 library crypto-core
   import: crypto-shared
-  exposed-modules: Algorithm.SuccessiveSquaring,
+  exposed-modules: Algorithm.ExtendedGCD, 
+                   Algorithm.SuccessiveSquaring,
                    Algorithm.Numeric,
                    CodeGen.ExtendedGCD,
                    CodeGen.SuccessiveSquaring,
