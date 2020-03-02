@@ -31,16 +31,24 @@ genEGCDT :: Int -> Int -> Doc a
 genEGCDT a b =
   let dl = divList a b
   in  ctabl
-        (pretty ("cc|" ++ replicate (length dl + 2) 'c'))
-        (   "\\hline"
+        (pretty ("cc|" ++ replicate (length dl) 'c'))
+        (   "&&"
+        <+> genRow dl
+        <+> newl
         <>  Pretty.hardline
-        <>  dollar (pretty 1)
+        <>  "\\hline"
+        <>  Pretty.hardline
+        <>  dollar "0"
         <+> "&"
-        <+> dollar (pretty 0)
+        <+> dollar "1"
+        <+> "&"
         <+> genRow (tableF dl)
         <+> newl
-        <+> (dollar (pretty 0))
+        <>  Pretty.hardline
+        <>  dollar "1"
         <+> "&"
-        <+> (dollar (pretty 1))
+        <+> dollar "0"
+        <+> "&"
         <+> genRow (tableS dl)
+        <>  Pretty.hardline
         )

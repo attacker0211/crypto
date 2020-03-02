@@ -26,5 +26,5 @@ tableS :: [Int] -> [Int]
 tableS li = table' 1 0 li
 
 table' :: Int -> Int -> [Int] -> [Int]
-table' u v []       = [u, v]
+table' u v []       = []
 table' u v (x : xs) = let t = x * v + u in [t] ++ table' v t xs

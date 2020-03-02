@@ -2,7 +2,6 @@ module Main where
 
 import           CodeGen.SuccessiveSquaring
 import           CodeGen.ExtendedGCD
-import           Algorithm.ExtendedGCD
 
 main :: IO ()
 main = do
@@ -10,9 +9,6 @@ main = do
   a <- readLn
   b <- readLn
   putStrLn (show (genEucl a b))
-  putStrLn (show (divList a b))
-  putStrLn (show (tableF (divList a b)))
-  putStrLn (show (tableS (divList a b)))
   putStrLn (show (genEGCDT a b))
   --putStrLn "Enter g, h, p"
   --g <- readLn

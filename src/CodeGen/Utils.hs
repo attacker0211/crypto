@@ -49,7 +49,7 @@ ecenter = end "center"
 -- x
 -- \end{center}
 center :: Doc a -> Doc a
-center x = enclose bcenter ecenter x
+center x = enclose bcenter (Pretty.hardline <> ecenter) x
 
 btabl :: Doc a -> Doc a
 btabl x = begin "tabular" <> Pretty.braces x <> Pretty.hardline
