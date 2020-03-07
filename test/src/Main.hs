@@ -2,12 +2,14 @@ module Main where
 
 import           CodeGen.SuccessiveSquaring
 import           CodeGen.ExtendedGCD
+import           Algorithm.ExtendedGCD
 
 main :: IO ()
 main = do
   putStrLn "Enter a, b"
   a <- readLn
   b <- readLn
+  putStrLn (show (egcd a b))
   putStrLn (show (genEucl a b))
   putStrLn (show (genEGCDT a b))
   --putStrLn "Enter g, h, p"

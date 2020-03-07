@@ -38,3 +38,10 @@ executable test
   build-depends: crypto-core
   hs-source-dirs: test/src
   ghc-options: -threaded
+
+executable repl
+  import: crypto-shared
+  main-is: Main.hs
+  build-depends: crypto-core
+  hs-source-dirs: repl/src
+  ghc-options: -threaded
