@@ -3,7 +3,11 @@ module CodeGen.Utils
   , cdot
   , center
   , dollar
+  , ddollar
   , eqv
+  , frac
+  , fracD
+  , gcdP
   , genRow
   , mo
   , newl
@@ -77,8 +81,14 @@ cdot = "\\cdot"
 dl :: Doc a
 dl = "$"
 
+ddl :: Doc a
+ddl = "$$"
+
 dollar :: Doc a -> Doc a
 dollar x = enclose dl dl x
+
+ddollar :: Doc a -> Doc a
+ddollar x = enclose ddl ddl x
 
 eqv :: Doc a
 eqv = "\\equiv"
@@ -99,3 +109,13 @@ genRow :: [Int] -> Doc a
 genRow []       = ""
 genRow [x     ] = dollar (pretty x)
 genRow (x : xs) = dollar (pretty x) <+> "&" <+> genRow xs
+
+frac :: Int -> Int -> Doc a
+frac x y = "\\frac" <> Pretty.braces (pretty x) <> Pretty.braces (pretty y)
+
+fracD :: Doc a -> Doc a -> Doc a
+fracD d1 d2 = "\\frac" <> Pretty.braces d1 <> Pretty.braces d2
+
+gcdP :: Int -> Int -> Doc a
+gcdP i1 i2 =
+  "\\gcd" <> Pretty.parens (pretty i1 <+> Pretty.comma <+> pretty i2)

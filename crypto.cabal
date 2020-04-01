@@ -15,7 +15,8 @@ extra-source-files:  CHANGELOG.md
 
 common crypto-shared
   build-depends: base >= 4.12 && <4.13,
-                 prettyprinter >= 1.5.1
+                 prettyprinter >= 1.5.1,
+                 semirings >= 0.2
   default-language: Haskell2010
   default-extensions: BangPatterns,
                       OverloadedStrings,
@@ -27,6 +28,7 @@ library crypto-core
   exposed-modules: Algorithm.ExtendedGCD, 
                    Algorithm.SuccessiveSquaring,
                    Algorithm.Numeric,
+                   Algorithm.Chinese,
                    CodeGen.ExtendedGCD,
                    CodeGen.SuccessiveSquaring,
                    CodeGen.Utils
@@ -37,11 +39,4 @@ executable test
   main-is: Main.hs
   build-depends: crypto-core
   hs-source-dirs: test/src
-  ghc-options: -threaded
-
-executable repl
-  import: crypto-shared
-  main-is: Main.hs
-  build-depends: crypto-core
-  hs-source-dirs: repl/src
   ghc-options: -threaded

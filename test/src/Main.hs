@@ -10,8 +10,8 @@ main = do
   a <- readLn
   b <- readLn
   putStrLn (show (egcd a b))
-  putStrLn (show (genEucl a b))
-  putStrLn (show (genEGCDT a b))
+  --putStrLn (show (genEucl a b))
+  --putStrLn (show (genEGCDT a b))
   --putStrLn "Enter g, h, p"
   --g <- readLn
   --h <- readLn
