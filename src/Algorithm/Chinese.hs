@@ -9,19 +9,24 @@ import           Algorithm.ExtendedGCD          ( inv )
 import           Data.Maybe                     ( fromJust
                                                 , isNothing
                                                 )
-chineseMod :: [(Int, Int)] -> Int
+chineseMod :: [(Integer, Integer)] -> Integer
 chineseMod congruences = product (snd <$> congruences)
 
 -- return tuples (M_k, m_k)
-chineseEq :: Int -> [(Int, Int)] -> [(Int, Int)]
+chineseEq :: Integer -> [(Integer, Integer)] -> [(Integer, Integer)]
 chineseEq chiMod congruences =
   (\(_, m) -> (chiMod `quot` m, m)) <$> congruences
 
-solveChineseEq :: [(Int, Int)] -> [Maybe Int]
+solveChineseEq :: [(Integer, Integer)] -> [Maybe Integer]
 solveChineseEq eqs = (\(r, m) -> inv r m) <$> eqs
 
 -- (b_k, m_k) -> solution to the system
-chineseRT :: [(Int, Int)] -> [(Int, Int)] -> [Maybe Int] -> Int -> Maybe Int
+chineseRT
+  :: [(Integer, Integer)]
+  -> [(Integer, Integer)]
+  -> [Maybe Integer]
+  -> Integer
+  -> Maybe Integer
 chineseRT congruences eq invs chiMod = sum'
   chiMod
   (zipWith combine' (zip (fst <$> congruences) (fst <$> eq)) invs)

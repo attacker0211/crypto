@@ -105,17 +105,17 @@ qd = "\\quad"
 newl :: Doc a
 newl = "\\\\"
 
-genRow :: [Int] -> Doc a
+genRow :: [Integer] -> Doc a
 genRow []       = ""
 genRow [x     ] = dollar (pretty x)
 genRow (x : xs) = dollar (pretty x) <+> "&" <+> genRow xs
 
-frac :: Int -> Int -> Doc a
+frac :: Integer -> Integer -> Doc a
 frac x y = "\\frac" <> Pretty.braces (pretty x) <> Pretty.braces (pretty y)
 
 fracD :: Doc a -> Doc a -> Doc a
 fracD d1 d2 = "\\frac" <> Pretty.braces d1 <> Pretty.braces d2
 
-gcdP :: Int -> Int -> Doc a
+gcdP :: Integer -> Integer -> Doc a
 gcdP i1 i2 =
   "\\gcd" <> Pretty.parens (pretty i1 <+> Pretty.comma <+> pretty i2)

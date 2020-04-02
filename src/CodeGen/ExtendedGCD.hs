@@ -12,7 +12,7 @@ import           Data.Text.Prettyprint.Doc      ( Pretty(..)
 import qualified Data.Text.Prettyprint.Doc     as Pretty
 
 -- gen steps for doing Euclid algorithm
-genEucl :: Int -> Int -> Doc a
+genEucl :: Integer -> Integer -> Doc a
 genEucl a b = align (genEucl' a b) where
   genEucl' _ 0 = Pretty.hardline
   genEucl' a b =
@@ -27,7 +27,7 @@ genEucl a b = align (genEucl' a b) where
       <+> genEucl' b (a `rem` b)
 
 -- gen table to find u v such that ub - va = (-1)^{t}
-genEGCDT :: Int -> Int -> Doc a
+genEGCDT :: Integer -> Integer -> Doc a
 genEGCDT a b =
   let dl = divList a b
   in  ctabl

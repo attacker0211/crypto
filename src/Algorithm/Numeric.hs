@@ -4,9 +4,9 @@ module Algorithm.Numeric
   )
 where
 -- multiple in a field F_p
-multipleF :: Int -> Int -> Int -> Int
+multipleF :: Integer -> Integer -> Integer -> Integer
 multipleF p a b = (a * b) `mod` p
 
 -- log2
-log2 :: Int -> Int
-log2 x = floor (logBase (fromIntegral 2) (fromIntegral x))
+log2 :: Integer -> Integer
+log2 x = floor (logBase 2 (fromIntegral x))
