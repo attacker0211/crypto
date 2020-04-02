@@ -19,7 +19,7 @@ egcd a b = let (g, u, v) = egcd b (a `mod` b) in (g, v, u - (a `div` b) * v)
 -- multiplicative inverse
 -- find x such that ax = 1 mod p
 inv :: Int -> Int -> Maybe Int
-inv a p = let (g, u, v) = egcd a p in inv' g u p where
+inv a p = let (g, u, _) = egcd a p in inv' g u p where
   inv' 1 u p = Just ((u + p) `mod` p)
   inv' _ _ _ = Nothing
 

@@ -31,7 +31,8 @@ library crypto-core
                    Algorithm.Chinese,
                    CodeGen.ExtendedGCD,
                    CodeGen.SuccessiveSquaring,
-                   CodeGen.Utils
+                   CodeGen.Utils,
+                   CodeGen.Chinese
   hs-source-dirs: src 
   
 executable test

@@ -21,12 +21,15 @@ solveChineseEq :: [(Int, Int)] -> [Maybe Int]
 solveChineseEq eqs = (\(r, m) -> inv r m) <$> eqs
 
 -- (b_k, m_k) -> solution to the system
-chineseRT :: [(Int, Int)] -> [Maybe Int] -> Maybe Int
-chineseRT congruences invs = prod' $ (zipWith combine' congruences invs)
+chineseRT :: [(Int, Int)] -> [(Int, Int)] -> [Maybe Int] -> Int -> Maybe Int
+chineseRT congruences eq invs chiMod = sum'
+  chiMod
+  (zipWith combine' (zip (fst <$> congruences) (fst <$> eq)) invs)
  where
   combine' _  Nothing  = Nothing
-  combine' tp (Just r) = Just $ (fst tp * snd tp * r)
+  combine' tp (Just r) = Just $ (fst tp * snd tp * r `mod` chiMod)
 
-  prod' [] = Nothing
-  prod' (x : xs) =
-    if isNothing x then Nothing else Just $ (fromJust x * (fromJust $ prod' xs))
+  sum' _      []       = Just 0
+  sum' chiMod (x : xs) = if isNothing x
+    then Nothing
+    else Just $ ((fromJust x + (fromJust (sum' chiMod xs))) `mod` chiMod)
