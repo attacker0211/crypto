@@ -29,10 +29,12 @@ library crypto-core
                    Algorithm.SuccessiveSquaring,
                    Algorithm.Numeric,
                    Algorithm.Chinese,
+                   Algorithm.MillerRabin,
                    CodeGen.ExtendedGCD,
                    CodeGen.SuccessiveSquaring,
                    CodeGen.Utils,
-                   CodeGen.Chinese
+                   CodeGen.Chinese,
+                   CodeGen.MillerRabin
   hs-source-dirs: src 
   
 executable test

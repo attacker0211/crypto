@@ -11,6 +11,7 @@ module CodeGen.Utils
   , genRow
   , mo
   , newl
+  , pmo
   , tabl
   , ctabl
   , qd
@@ -95,6 +96,9 @@ eqv = "\\equiv"
 
 mo :: Doc a
 mo = "\\mod"
+
+pmo :: Integer -> Doc a
+pmo x = "\\pmod" <> Pretty.braces (pretty x)
 
 qqd :: Doc a
 qqd = "\\qquad"
