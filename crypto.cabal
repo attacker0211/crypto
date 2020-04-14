@@ -30,6 +30,7 @@ library crypto-core
                    Algorithm.Numeric,
                    Algorithm.Chinese,
                    Algorithm.MillerRabin,
+                   --Algorithm.QuadraticSieve,
                    CodeGen.ExtendedGCD,
                    CodeGen.SuccessiveSquaring,
                    CodeGen.Utils,

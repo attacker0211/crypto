@@ -14,7 +14,7 @@ import           Data.Text.Prettyprint.Doc      ( Pretty(..)
                                                 )
 import qualified Data.Text.Prettyprint.Doc     as Pretty
 
-genChinese :: [(Integer, Integer)] -> Doc a
+genChinese :: [(Int, Int)] -> Doc a
 genChinese congruences =
   let
     n    = chineseMod congruences
@@ -54,7 +54,7 @@ genChinese congruences =
       <> Pretty.hardline
       <> align (genMod' eq n 1)
    where
-    genMod' :: [(Integer, Integer)] -> Integer -> Integer -> Doc a
+    genMod' :: [(Int, Int)] -> Int -> Int -> Doc a
     genMod' [] _ _ = ""
     genMod' [x] n i =
       "N_"
@@ -68,7 +68,7 @@ genChinese congruences =
     genMod' (x : xs) n i =
       genMod' [x] n i <> newl <> Pretty.hardline <> genMod' xs n (i + 1)
 
-  genEq :: [(Integer, Integer)] -> Integer -> Doc a
+  genEq :: [(Int, Int)] -> Int -> Doc a
   genEq [] _ = ""
   genEq [x] i =
     "N_"
@@ -77,13 +77,13 @@ genChinese congruences =
       <>  pretty i
       <+> "&"
       <>  eqv
-      <+> pretty (1 :: Integer)
+      <+> pretty (1 :: Int)
       <+> mo
       <>  Pretty.braces (pretty (snd x))
   genEq (x : xs) i =
     genEq [x] i <+> newl <> Pretty.hardline <> genEq xs (i + 1)
 
-  genInvs :: [Maybe Integer] -> Integer -> Doc a
+  genInvs :: [Maybe Int] -> Int -> Doc a
   genInvs []  _ = ""
   genInvs [x] i = if isNothing x
     then "No solution for" <+> dollar ("x_" <> pretty i) <> newl

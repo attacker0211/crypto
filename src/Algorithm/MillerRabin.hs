@@ -8,15 +8,15 @@ where
 import           Algorithm.SuccessiveSquaring
 import           Algorithm.Numeric
 
-elimTwo :: Integer -> Integer -> (Integer, Integer)
+elimTwo :: Int -> Int -> (Int, Int)
 elimTwo t x = if t `mod` 2 == 0 then elimTwo (t `div` 2) (x + 1) else (t, x)
 
 -- a = a^q -> k -> n -> List of k elements
-millerList :: Integer -> Integer -> Integer -> [Integer]
+millerList :: Int -> Int -> Int -> [Int]
 millerList _  0 _ = []
 millerList aq k n = [aq] ++ millerList (multipleF n aq aq) (k - 1) n
 
-checkPrimeMiller :: Integer -> Integer -> Integer -> Integer -> Bool
+checkPrimeMiller :: Int -> Int -> Int -> Int -> Bool
 checkPrimeMiller a q k n =
   let ml = millerList (fastPowering a q n) k n in check' ml 0
  where
@@ -24,7 +24,7 @@ checkPrimeMiller a q k n =
   check' (x : xs) 0 = if x == 1 then False else check' xs 1
   check' (x : xs) k = if x == n - 1 then False else check' xs (k + 1)
 
-millerTest :: Integer -> Integer -> Bool
+millerTest :: Int -> Int -> Bool
 millerTest a n =
   let (q, k) = elimTwo (n - 1) 0
       a'     = fastPowering a q n

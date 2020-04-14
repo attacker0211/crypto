@@ -13,7 +13,7 @@ import           Data.Text.Prettyprint.Doc      ( Pretty(..)
                                                 )
 import qualified Data.Text.Prettyprint.Doc     as Pretty
 
-genOneSL :: Integer -> Integer -> Integer -> Integer -> Doc a
+genOneSL :: Int -> Int -> Int -> Int -> Doc a
 genOneSL g h p x =
   pretty g
     <>  "^"
@@ -23,7 +23,7 @@ genOneSL g h p x =
     <+> mo
     <>  Pretty.braces (pretty p)
 
-genSL :: Integer -> Integer -> Integer -> [Integer] -> Doc a
+genSL :: Int -> Int -> Int -> [Int] -> Doc a
 genSL _ _ _ []  = ""
 genSL g h p [x] = genOneSL g h p x
 genSL g h p (fi : se) =
@@ -35,24 +35,24 @@ genSL g h p (fi : se) =
     <>  Pretty.hardline
     <>  genSL g (h + 2) p (drop 1 se)
 
-genLB :: [Integer] -> Doc a
+genLB :: [Int] -> Doc a
 genLB []       = ""
 genLB [e     ] = "2^" <> Pretty.braces (pretty e)
 genLB (e : es) = "2^" <> Pretty.braces (pretty e) <+> "+" <+> genLB es
 
-genPL :: [Integer] -> Doc a
+genPL :: [Int] -> Doc a
 genPL []       = ""
 genPL [e     ] = pretty e
 genPL (e : es) = pretty e <+> cdot <+> genPL es
 
-genBase :: Integer -> Doc a
+genBase :: Int -> Doc a
 genBase x = dollar (pretty x <+> "=" <+> genLB (toLogTwo x))
 
-genSuccessive :: Integer -> Integer -> Integer -> Doc a
+genSuccessive :: Int -> Int -> Int -> Doc a
 genSuccessive g h p =
   let sl = successiveList g (log2 h) p in align (genSL g 0 p sl)
 
-genRes :: Integer -> Integer -> Integer -> Doc a
+genRes :: Int -> Int -> Int -> Doc a
 genRes g h p =
   let pl = powerList g h p
   in  dollar

@@ -97,7 +97,7 @@ eqv = "\\equiv"
 mo :: Doc a
 mo = "\\mod"
 
-pmo :: Integer -> Doc a
+pmo :: Int -> Doc a
 pmo x = "\\pmod" <> Pretty.braces (pretty x)
 
 qqd :: Doc a
@@ -109,17 +109,17 @@ qd = "\\quad"
 newl :: Doc a
 newl = "\\\\"
 
-genRow :: [Integer] -> Doc a
+genRow :: [Int] -> Doc a
 genRow []       = ""
 genRow [x     ] = dollar (pretty x)
 genRow (x : xs) = dollar (pretty x) <+> "&" <+> genRow xs
 
-frac :: Integer -> Integer -> Doc a
+frac :: Int -> Int -> Doc a
 frac x y = "\\frac" <> Pretty.braces (pretty x) <> Pretty.braces (pretty y)
 
 fracD :: Doc a -> Doc a -> Doc a
 fracD d1 d2 = "\\frac" <> Pretty.braces d1 <> Pretty.braces d2
 
-gcdP :: Integer -> Integer -> Doc a
+gcdP :: Int -> Int -> Doc a
 gcdP i1 i2 =
   "\\gcd" <> Pretty.parens (pretty i1 <+> Pretty.comma <+> pretty i2)

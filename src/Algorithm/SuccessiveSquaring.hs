@@ -10,28 +10,28 @@ import           Algorithm.Numeric
 import           Data.Bits                      ( shiftL )
 import           Data.List                      ( (++) )
 
-toLogTwo :: Integer -> [Integer]
+toLogTwo :: Int -> [Int]
 toLogTwo 0 = []
 toLogTwo x =
   let lo = log2 x
-  in  toLogTwo (x - toInteger (shiftL (1 :: Integer) (fromInteger lo))) ++ [lo]
+  in  toLogTwo (x - toInt (shiftL (1 :: Int) (fromInt lo))) ++ [lo]
 
 -- Base (g) -> Max exponent -> mod p -> List 
-successiveList :: Integer -> Integer -> Integer -> [Integer]
+successiveList :: Int -> Int -> Int -> [Int]
 successiveList g 0 __ = [g]
 successiveList g a p =
   let l = successiveList g (a - 1) p
   in  l ++ [((`mod` p) . (\x -> x * x) . last) $ l]
 
  --base g -> exponent h -> mod p -> g^h mod p
-powerList :: Integer -> Integer -> Integer -> [Integer]
+powerList :: Int -> Int -> Int -> [Int]
 powerList g h p =
   let lt = toLogTwo h
       sl = successiveList g (log2 h) p
-  in  (sl !!) <$> (fromInteger <$> lt)
+  in  (sl !!) <$> (fromInt <$> lt)
 
-fastPowering :: Integer -> Integer -> Integer -> Integer
+fastPowering :: Int -> Int -> Int -> Int
 fastPowering g h p = foldr (multipleF p) 1 (powerList g h p)
 
-fastPoweringL :: Integer -> [Integer] -> Integer
+fastPoweringL :: Int -> [Int] -> Int
 fastPoweringL p li = foldr (multipleF p) 1 li
