@@ -9,11 +9,10 @@ Including latex generation & computation for Successive Squaring, Extended Eucli
 #### TODO:
 - Elliptic Curve over a Finite Field (Elliptic Curve addition algorithm + The Double and Add Algorithm)
 - Index Calculus
-- The Quadratic Sieve
 
 ## Installation and build
 [Cabal](https://www.haskell.org/cabal/download.html) needs to be installed.
 ```
-https://github.com/attacker0211/crypto.git
+git clone https://github.com/attacker0211/crypto.git
 cabal repl
 ```
