@@ -5,7 +5,7 @@ module Algorithm.Numeric
 where
 -- multiple in a field F_p
 multipleF :: Int -> Int -> Int -> Int
-multipleF p a b = (a * b) `mod` p
+multipleF p a b = (a * b) `rem` p
 
 -- log2
 log2 :: Int -> Int

@@ -27,9 +27,9 @@ chineseRT congruences eq invs chiMod = sum'
   (zipWith combine' (zip (fst <$> congruences) (fst <$> eq)) invs)
  where
   combine' _  Nothing  = Nothing
-  combine' tp (Just r) = Just $ (fst tp * snd tp * r `mod` chiMod)
+  combine' tp (Just r) = Just $ (fst tp * snd tp * r `rem` chiMod)
 
   sum' _      []       = Just 0
   sum' chiMod (x : xs) = if isNothing x
     then Nothing
-    else Just $ ((fromJust x + (fromJust (sum' chiMod xs))) `mod` chiMod)
+    else Just $ ((fromJust x + (fromJust (sum' chiMod xs))) `rem` chiMod)

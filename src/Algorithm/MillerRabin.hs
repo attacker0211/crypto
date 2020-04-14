@@ -9,7 +9,7 @@ import           Algorithm.SuccessiveSquaring
 import           Algorithm.Numeric
 
 elimTwo :: Int -> Int -> (Int, Int)
-elimTwo t x = if t `mod` 2 == 0 then elimTwo (t `div` 2) (x + 1) else (t, x)
+elimTwo t x = if t `rem` 2 == 0 then elimTwo (t `div` 2) (x + 1) else (t, x)
 
 -- a = a^q -> k -> n -> List of k elements
 millerList :: Int -> Int -> Int -> [Int]
@@ -32,9 +32,9 @@ millerTest a n =
  where
   miller _  0 _ _ = True
   miller a' p k n = if p == k
-    then if a' `mod` n == 1
+    then if a' `rem` n == 1
       then False
       else miller (multipleF n a' a') (k - 1) k n
-    else if a' `mod` n == -1
+    else if a' `rem` n == -1
       then False
       else miller (multipleF n a' a') (p - 1) k n

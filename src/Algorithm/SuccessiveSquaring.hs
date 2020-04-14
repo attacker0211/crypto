@@ -21,7 +21,7 @@ successiveList :: Int -> Int -> Int -> [Int]
 successiveList g 0 __ = [g]
 successiveList g a p =
   let l = successiveList g (a - 1) p
-  in  l ++ [((`mod` p) . (\x -> x * x) . last) $ l]
+  in  l ++ [((`rem` p) . (\x -> x * x) . last) $ l]
 
  --base g -> exponent h -> mod p -> g^h mod p
 powerList :: Int -> Int -> Int -> [Int]
