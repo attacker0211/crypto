@@ -12,9 +12,7 @@ import           Data.List                      ( (++) )
 
 toLogTwo :: Int -> [Int]
 toLogTwo 0 = []
-toLogTwo x =
-  let lo = log2 x
-  in  toLogTwo (x - toInt (shiftL (1 :: Int) (fromInt lo))) ++ [lo]
+toLogTwo x = let lo = log2 x in toLogTwo (x - (shiftL (1 :: Int) lo)) ++ [lo]
 
 -- Base (g) -> Max exponent -> mod p -> List 
 successiveList :: Int -> Int -> Int -> [Int]
@@ -28,7 +26,7 @@ powerList :: Int -> Int -> Int -> [Int]
 powerList g h p =
   let lt = toLogTwo h
       sl = successiveList g (log2 h) p
-  in  (sl !!) <$> (fromInt <$> lt)
+  in  (sl !!) <$> lt
 
 fastPowering :: Int -> Int -> Int -> Int
 fastPowering g h p = foldr (multipleF p) 1 (powerList g h p)

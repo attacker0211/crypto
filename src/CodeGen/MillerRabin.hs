@@ -15,7 +15,7 @@ import qualified Data.Text.Prettyprint.Doc     as Pretty
 genMiller :: Int -> Int -> Doc ann
 genMiller n a =
   let (q, k) = elimTwo (n - 1) 0
-  in  ddollar (genFac k q) <> Pretty.hardline <> align (genList q n k a)
+  in  ddollar (genFac k q) <> Pretty.hardline <> (genList q n k a)
 
 genMillerL :: Int -> [Int] -> Doc ann
 genMillerL n a =
