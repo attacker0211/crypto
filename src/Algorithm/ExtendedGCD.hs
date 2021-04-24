@@ -6,8 +6,7 @@ module Algorithm.ExtendedGCD
   , tableF
   , tableS
   , table'
-  )
-where
+  ) where
 
 -- a, b positive. Find u, v such that au + bv = gcd(a, b)
 -- egcd a b = (g, u, v)

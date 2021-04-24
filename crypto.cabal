@@ -14,7 +14,7 @@ build-type:          Simple
 extra-source-files:  CHANGELOG.md
 
 common crypto-shared
-  build-depends: base >= 4.12 && <4.13,
+  build-depends: base >= 4.12,
                  prettyprinter >= 1.5.1,
                  semirings >= 0.2,
                  array >= 0.5 && < 0.6,
